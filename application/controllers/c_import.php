@@ -57,7 +57,7 @@ class c_import extends CI_Controller
 	{
         // var_dump($data_array);
         // die;
-		    $fileName = $_FILES['file']['name'];
+		    $fileName = $_FILES['file']['name'].'_'.Time();
           
 			$config['upload_path'] = './assets/importFile/'; //path upload
 			$config['file_name'] = $fileName;  // nama file
