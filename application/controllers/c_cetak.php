@@ -33,6 +33,6 @@ class c_cetak extends CI_Controller
             'data' => $this->crud->pembayaranid($id)
 		];
 
-        $this->load->view('laporan/cetak',$data);
+        $this->routes->load('main/dashboard','laporan/cetak',$data);
 	}
 }

@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="<?= base_url('assets/img/logo.jpg'); ?>">
-    <title>Cetak</title>
-    <link href="<?= base_url('assets/css/styles.css') ?>" rel="stylesheet" />
-    <script src="<?= base_url('assets/js/all.min.js') ?>" rossorigin="anonymous"></script>
-</head>
-
-<body>
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
     <div class="col-md-12 mx-auto">
         <div class="ml-4 p-4">
           <a class="btn btn-danger text-white rounded-circle" href="<?= base_url('c_cetak'); ?>">
@@ -29,11 +19,11 @@
             <div class="form-row">
               <div class="form-group col-md-3">
                 <label>Kode Penetapan</label>
-                <label class="form-control" for=""><?= dec($data->kode_penetapan) ?></label>
+                <label class="form-control" for=""><?= $data->type_of_penetapan == 'enc' ?dec($data->kode_penetapan): $data->kode_penetapan?></label>
               </div>
               <div class="form-group col-md-3">
                 <label>Telat Pajak</label>
-                <label class="form-control" for=""><?= dec($data->denda_pkb) ?> Bulan</label>
+                <label class="form-control" for=""><?= $data->type_of_pengecekan == 'enc' ?dec($data->denda_pkb):$data->denda_pkb ?> Bulan</label>
               </div>
               <!-- <div class="form-group col-md-3">
                 <label>Harga</label>
@@ -41,111 +31,109 @@
               </div> -->
               <div class="form-group col-md-3">
                 <label>PKB</label>
-                <label class="form-control" for="">Rp. <?= number_format(dec($data->pkb),2,',','.') ?></label>
+                <label class="form-control" for="">Rp. <?= number_format($data->type_of_penetapan=='enc'?dec($data->pkb):$data->pkb,2,',','.') ?></label>
               </div>
               <!-- <div class="form-group col-md-3">
                 <label>NJKB</label>
-                <label class="form-control" for="">Rp. <?= number_format(dec($data->njkb),2,',','.') ?></label>
+                <label class="form-control" for="">Rp. <?= number_format($data->type_of_penetapan=='enc'?dec($data->njkb):$data->njkb,2,',','.') ?></label>
               </div> -->
               <div class="form-group col-md-3">
                 <label>SWDKLLJ</label>
-                <label class="form-control" for="">Rp. <?= number_format(dec($data->swdkllj),2,',','.') ?></label>
+                <label class="form-control" for="">Rp. <?= number_format($data->type_of_penetapan=='enc'?dec($data->swdkllj):$data->swdkllj,2,',','.') ?></label>
               </div>
               <div class="form-group col-md-3">
                 <label>Denda</label>
-                <label class="form-control" for="">Rp. <?= number_format(floatval(dec($data->total_denda_swdkllj)+dec($data->total_denda_pkb)),2,',','.') ?></label>
+                <label class="form-control" for="">Rp. <?= number_format(floatval($data->type_of_pengecekan=='enc'?dec($data->total_denda_swdkllj):$data->total_denda_swdkllj+$data->type_of_pengecekan=='enc'?dec($data->total_denda_pkb):$data->total_denda_pkb),2,',','.') ?></label>
               </div>
               <div class="form-group col-md-3">
                 <label>Total</label>
-                <label class="form-control" for="">Rp. <?= number_format(dec($data->total),2,',','.') ?></label>
+                <label class="form-control" for="">Rp. <?= number_format($data->type_of_penetapan=='enc'?dec($data->total):$data->total,2,',','.') ?></label>
               </div>
               <div class="form-group col-md-3">
                 <label>Masa Berlaku</label>
-                <label class="form-control" for=""><?= dec($data->masa_berlaku) ?></label>
+                <label class="form-control" for=""><?= $data->type_of_kepemilikan=='enc'?dec($data->masa_berlaku):$data->masa_berlaku ?></label>
               </div>
               <div class="form-group col-md-3">
                 <label>Tanggal Penetapan</label>
-                <label class="form-control" for=""><?= dec($data->tanggal_penetapan) ?></label>
+                <label class="form-control" for=""><?= $data->type_of_penetapan=='enc'?dec($data->tanggal_penetapan):$data->tanggal_penetapan ?></label>
               </div>
             </div>
             <hr>
             <div class="form-row">    
             <div class="form-group col-md-3">
                   <label>Nomor Identitas Kependudukan</label>
-                  <label class="form-control" for=""><?= dec($data->nik) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pemilik=='enc'?dec($data->nik):$data->nik ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Nama Lengkap</label>
-                  <label class="form-control" for=""><?= dec($data->nama_pemilik) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pemilik=='enc'?dec($data->nama_pemilik):$data->nama_pemilik ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Alamat Lengkap</label>
-                  <label class="form-control" for=""><?= dec($data->alamat) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pemilik=='enc'?dec($data->alamat):$data->alamat ?></label>
                 </div>
               </div>
               <hr>
               <div class="form-row">
                 <div class="form-group col-md-3">
                   <label>Kode Kepemilikan</label>
-                  <label class="form-control" for=""><?= dec($data->kode_kepemilikan) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_kepemilikan=='enc'?dec($data->kode_kepemilikan):$data->kode_kepemilikan ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Nomor Registrasi</label>
-                  <label class="form-control" for=""><?= dec($data->no_registrasi) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_kepemilikan=='enc'?dec($data->no_registrasi):$data->no_registrasi ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Kepemilikan Ke</label>
-                  <label class="form-control" for=""><?= dec($data->kepemilikan_ke) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_kepemilikan=='enc'?dec($data->kepemilikan_ke):$data->kepemilikan_ke ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Nomor BPKB</label>
-                  <label class="form-control" for=""><?= dec($data->no_bpkb) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_kepemilikan=='enc'?dec($data->no_bpkb):$data->no_bpkb ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Masa Berlaku STNK</label>
-                  <label class="form-control" for=""><?= dec($data->masa_berlaku) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_kepemilikan=='enc'?dec($data->masa_berlaku):$data->masa_berlaku ?></label>
                 </div>
               </div>
                 <hr>
               <div class="form-row">
                 <div class="form-group col-md-3">
                   <label>kode pendaftaran</label>
-                  <label class="form-control" for=""><?= dec($data->kode_pendaftaran) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pendaftaran=='enc'?dec($data->kode_pendaftaran):$data->kode_pendaftaran ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Tanggal Pendaftaran</label>
-                  <label class="form-control" for=""><?= dec($data->tanggal_pendaftaran) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pendaftaran=='enc'?dec($data->tanggal_pendaftaran):$data->tanggal_pendaftaran ?></label>
                 </div>
               </div>
                 <hr>
               <div class="form-row">
                 <div class="form-group col-md-3">
                   <label>kode Pengecekan</label>
-                  <label class="form-control" for=""><?= dec($data->kode_pengecekan) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pengecekan=='enc'?dec($data->kode_pengecekan):$data->kode_pengecekan ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Tanggal Pengecekan</label>
-                  <label class="form-control" for=""><?= dec($data->tanggal_pengecekan) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_pengecekan=='enc'?dec($data->tanggal_pengecekan):$data->tanggal_pengecekan ?></label>
                 </div>
               </div>
               <hr>
               <div class="form-row">
                 <div class="form-group col-md-3">
                   <label>ID Card Petugas</label>
-                  <label class="form-control" for=""><?= dec($data->idcard) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_petugas=='enc'?dec($data->kode_petugas):$data->kode_petugas ?></label>
                 </div>
                 <div class="form-group col-md-3">
                   <label>Nama Petugas</label>
-                  <label class="form-control" for=""><?= dec($data->nama_petugas) ?></label>
+                  <label class="form-control" for=""><?= $data->type_of_petugas=='enc'?dec($data->nama_petugas):$data->nama_petugas ?></label>
                 </div>
               </div>
           </div>
         </div>
       </div>
+      </div>
+    </main>
     <script>
         window.print();
     </script>
-    <script src="<?= base_url('assets/') ?>js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
-
-</html>
