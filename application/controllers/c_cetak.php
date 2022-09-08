@@ -20,7 +20,7 @@ class c_cetak extends CI_Controller
 	{
 		$data = [
 			'title' => 'Laporan',
-			'kepemilikan'=> $this->crud->penetapan()
+			'kepemilikan'=> $this->crud->pembayaran()
 		];
 		$this->routes->load('main/dashboard','laporan/laporan',$data);
 	}
@@ -30,8 +30,9 @@ class c_cetak extends CI_Controller
 		$id = $this->input->post('id');
 		$data = [
 			'title' => 'Cetak',
-            'data' => $this->crud->cetakid($id)
+            'data' => $this->crud->pembayaranid($id)
 		];
+
         $this->load->view('laporan/cetak',$data);
 	}
 }

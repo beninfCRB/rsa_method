@@ -14,7 +14,7 @@
                                     <select class="custom-select" name="id" id="id">
                                         <option selected disabled value="">Pilih Kepemilikan</option>
                                         <?php foreach ($kepemilikan as $p) : ?>
-                                            <option value="<?= $p->id_kepemilikan ?>"><?= dec($p->kode_kepemilikan).' - '.dec($p->no_registrasi) ?></option>
+                                            <option value="<?= $p->id_pembayaran ?>"><?= dec($p->kode_kepemilikan).' - '.dec($p->no_registrasi) ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>

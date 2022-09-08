@@ -18,6 +18,9 @@
                             <a class="btn btn-primary rounded-circle mr-4" href="<?= base_url('c_kepemilikan/add'); ?>">
                                 <i class="fas fa-plus text-white"></i>
                             </a>
+                            <a class="btn btn-success rounded-circle mr-4" href="<?= base_url('c_pendaftaran'); ?>">
+                                <i class="fas fa-forward text-white"></i>
+                            </a>
                         </div>
                     </div>
                 <div class="card-body">

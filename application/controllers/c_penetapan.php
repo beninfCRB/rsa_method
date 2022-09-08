@@ -261,4 +261,12 @@ class c_penetapan extends CI_Controller
         $id = $this->input->post('penetapan_id');
         echo json_encode($this->crud->getSelect($id));
     }
+
+    public function getDenda(){
+        $data = $this->crud->findone('pengecekan',$this->input->post('idCek'));
+
+        $data->type_of_pengecekan == 'enc'?$h_data = ["d_pkb"=>dec($data->total_denda_pkb),"d_swdkllj"=>dec($data->total_denda_swdkllj)]:$h_data= ["d_pkb"=>$data->total_denda_pkb,"d_swdkllj"=>$data->total_denda_swdkllj];
+
+		$this->output->set_status_header(200)->set_content_type('application/json')->set_output(json_encode($h_data));
+    }
 }

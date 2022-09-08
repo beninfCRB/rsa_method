@@ -54,7 +54,7 @@ dec(<div id="layoutSidenav_content">
 
                 <div class="form-group col-md-4">
                   <label for="tagihan">Tagihan <?= $title ?><span class="text-danger">*</span></label>
-                  <input class="form-control" type="number" name="tagihan" id="tagihan" value="<?= $data->type_of_pembayaran=='enc'?dec($data->tagihan):$data->tagihan ?>">
+                  <input readonly class="form-control" type="number" name="tagihan" id="tagihan" value="<?= $data->type_of_pembayaran=='enc'?dec($data->tagihan):$data->tagihan ?>">
                   <small class="form-text text-danger"><?= form_error('tagihan'); ?></small>
                 </div>
 

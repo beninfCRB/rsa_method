@@ -33,7 +33,7 @@
               </div>
               <div class="form-group col-md-3">
                 <label>Telat Pajak</label>
-                <label class="form-control" for=""><?= dec($data->telat) ?></label>
+                <label class="form-control" for=""><?= dec($data->denda_pkb) ?> Bulan</label>
               </div>
               <!-- <div class="form-group col-md-3">
                 <label>Harga</label>
@@ -53,7 +53,7 @@
               </div>
               <div class="form-group col-md-3">
                 <label>Denda</label>
-                <label class="form-control" for="">Rp. <?= number_format(dec($data->denda),2,',','.') ?></label>
+                <label class="form-control" for="">Rp. <?= number_format(floatval(dec($data->total_denda_swdkllj)+dec($data->total_denda_pkb)),2,',','.') ?></label>
               </div>
               <div class="form-group col-md-3">
                 <label>Total</label>

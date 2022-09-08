@@ -63,6 +63,18 @@ class m_crud extends CI_model
         return $this->db->query($query)->row();
     }
 
+    public function pembayaran()
+    {
+        $query = "SELECT * FROM pembayaran as pem INNER JOIN penetapan ON pem.penetapan_id = id_penetapan INNER JOIN kendaraan ON pem.kendaraan_id = id_kendaraan INNER JOIN pemilik ON pem.pemilik_id = id_pemilik INNER JOIN kepemilikan ON pem.kepemilikan_id = id_kepemilikan INNER JOIN pengecekan ON pem.pengecekan_id = id_pengecekan INNER JOIN pendaftaran ON pem.pendaftaran_id = id_pendaftaran INNER JOIN petugas ON pem.petugas_id = id_petugas";
+        return $this->db->query($query)->result();
+    }
+
+    public function pembayaranid($id)
+    {
+        $query = "SELECT * FROM pembayaran as pem INNER JOIN penetapan ON pem.penetapan_id = id_penetapan INNER JOIN kendaraan ON pem.kendaraan_id = id_kendaraan INNER JOIN pemilik ON pem.pemilik_id = id_pemilik INNER JOIN kepemilikan ON pem.kepemilikan_id = id_kepemilikan INNER JOIN pengecekan ON pem.pengecekan_id = id_pengecekan INNER JOIN pendaftaran ON pem.pendaftaran_id = id_pendaftaran INNER JOIN petugas ON pem.petugas_id = id_petugas WHERE id_pembayaran='$id'";
+        return $this->db->query($query)->row();
+    }
+
     public function penetapan()
     {
         $query = "SELECT * FROM penetapan as pe INNER JOIN kendaraan ON pe.kendaraan_id = id_kendaraan INNER JOIN pemilik ON pe.pemilik_id = id_pemilik INNER JOIN kepemilikan ON pe.kepemilikan_id = id_kepemilikan INNER JOIN pengecekan ON pe.pengecekan_id = id_pengecekan INNER JOIN pendaftaran ON pe.pendaftaran_id = id_pendaftaran INNER JOIN petugas ON pe.petugas_id = id_petugas";

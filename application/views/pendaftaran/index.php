@@ -18,6 +18,12 @@
                             <a class="btn btn-primary rounded-circle mr-4" href="<?= base_url('c_pendaftaran/add'); ?>">
                                 <i class="fas fa-plus text-white"></i>
                             </a>
+                            <a class="btn btn-warning rounded-circle mr-4" href="<?= base_url('c_kepemilikan'); ?>">
+                                <i class="fas fa-backward text-white"></i>
+                            </a>
+                            <a class="btn btn-success rounded-circle mr-4" href="<?= base_url('c_pengecekan'); ?>">
+                                <i class="fas fa-forward text-white"></i>
+                            </a>
                         </div>
                     </div>
                 <div class="card-body">

@@ -192,6 +192,37 @@ if ($title == 'Dashboard') {
 
  
   }
+
+
+
+  $('#penetapan_id').on('change',function(){
+            const valuePem = $('#penetapan_id').val();
+
+            $.ajax({
+			url: '<?= base_url('c_pembayaran/getTagihan') ?>',
+			data: {'idPem':valuePem},
+			method: 'post',
+			dataType: 'json',
+			success: function(data) {
+				$('#tagihan').val(data);
+			}
+		});
+        });
+
+  $('#pengecekan_id').on('change',function(){
+            const valueCek = $('#pengecekan_id').val();
+
+            $.ajax({
+			url: '<?= base_url('c_penetapan/getDenda') ?>',
+			data: {'idCek':valueCek},
+			method: 'post',
+			dataType: 'json',
+			success: function(data) {
+				$('#d_pkb').val(data.d_pkb);
+				$('#d_swdkllj').val(data.d_swdkllj);
+			}
+		});
+        });
 </script> 
 
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

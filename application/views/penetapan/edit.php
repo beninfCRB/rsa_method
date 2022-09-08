@@ -40,7 +40,7 @@
                 
                 <div class="form-group col-md-4">
                   <label for="pengecekan_id">Pengecekan Kendaraan<span class="text-danger">*</span></label>
-                  <select class="form-control" name="pengecekan_id" id="pengecekan_id">
+                  <select class="form-control pent" name="pengecekan_id" id="pengecekan_id">
                     <option selected disabled value="">== Pilih Pengecekan ==</option>
                     <?php foreach($pengecekan as $p):?>
                       <option value="<?= $p->id_pengecekan ?>"><?= $p->type_of_pengecekan=='enc'?dec($p->kode_pengecekan).' - '.dec($p->tanggal_pengecekan):$p->kode_pengecekan.' - '.$p->tanggal_pengecekan ?></option>
@@ -110,7 +110,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">Rp.</div>
                     </div>
-                    <input  class="form-control" type="number" name="d_pkb" id="d_pkb" placeholder="Masukan Denda PKB" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" value="<?= $data->type_of_penetapan=='enc'?dec($data->d_pkb):$data->d_pkb ?>">
+                    <input readonly class="form-control" type="number" name="d_pkb" id="d_pkb" placeholder="Masukan Denda PKB" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" value="<?= $data->type_of_penetapan=='enc'?dec($data->d_pkb):$data->d_pkb ?>">
                   </div>
                   <small class="form-text text-danger"><?= form_error('d_pkb'); ?></small>
                 </div>
@@ -121,7 +121,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">Rp.</div>
                     </div>
-                    <input  class="form-control" type="number" name="d_swdkllj" id="d_swdkllj" placeholder="Masukan Denda SWDKLLJ" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" value="<?= $data->type_of_penetapan=='enc'?dec($data->d_swdkllj):$data->d_swdkllj ?>">
+                    <input readonly class="form-control" type="number" name="d_swdkllj" id="d_swdkllj" placeholder="Masukan Denda SWDKLLJ" onkeyup="OnChange(this.value)" onKeyPress="return isNumberKey(event)" value="<?= $data->type_of_penetapan=='enc'?dec($data->d_swdkllj):$data->d_swdkllj ?>">
                   </div>
                   <small class="form-text text-danger"><?= form_error('d_swdkllj'); ?></small>
                 </div>

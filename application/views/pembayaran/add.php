@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group col-md-4">
                   <label for="tagihan">Tagihan <?= $title ?><span class="text-danger">*</span></label>
-                  <input class="form-control" type="number" name="tagihan" id="tagihan" placeholder="Masukan Tagihan Pembayaran Kendaraan">
+                  <input readonly class="form-control" type="text" name="tagihan" id="tagihan" placeholder="Masukan Tagihan Pembayaran Kendaraan">
                   <small class="form-text text-danger"><?= form_error('tagihan'); ?></small>
                 </div>
                 <div class="form-group col-md-4">
