@@ -40,7 +40,7 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $d->type_of_user=='enc'?dec($d->nama):$d->nama; ?></td>
                                         <td><?= $d->type_of_user=='enc'?dec($d->username):$d->username; ?></td>
-                                        <td><?= $d->type_of_user=='enc'?dec($d->password):$d->password; ?></td>
+                                        <td><?= $d->type_of_user=='enc'? str_repeat('*', strlen(dec($d->password))):str_repeat('*', strlen($d->password)); ?></td>
                                         <td><?= $d->type_of_user=='enc'?dec($d->email):$d->email; ?></td>
                                         <td><?= dec($d->role); ?></td>
                                        
