@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 07 Sep 2022 pada 17.00
+-- Waktu pembuatan: 09 Sep 2022 pada 10.52
 -- Versi server: 5.7.33
 -- Versi PHP: 7.4.19
 
@@ -89,6 +89,11 @@ CREATE TABLE `pembayaran` (
   `id_pembayaran` varchar(256) NOT NULL,
   `penetapan_id` varchar(256) NOT NULL,
   `petugas_id` varchar(256) NOT NULL,
+  `pemilik_id` varchar(50) NOT NULL,
+  `kendaraan_id` varchar(50) NOT NULL,
+  `kepemilikan_id` varchar(50) NOT NULL,
+  `pendaftaran_id` varchar(50) NOT NULL,
+  `pengecekan_id` varchar(50) NOT NULL,
   `kode_pembayaran` varchar(256) NOT NULL,
   `tagihan` varchar(256) NOT NULL,
   `di_tetapkan` varchar(50) NOT NULL,
@@ -141,6 +146,13 @@ CREATE TABLE `pendaftaran` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pendaftaran`
+--
+
+INSERT INTO `pendaftaran` (`id_pendaftaran`, `petugas_id`, `kepemilikan_id`, `kode_pendaftaran`, `tanggal_pendaftaran`, `keterangan`, `type_of_pendaftaran`, `created_at`, `updated_at`) VALUES
+('6319c779e0787', '6317558604b54', '631756fa9b197', 'PDT1', '2022-09-09', 'Pajak 5 Tahun', 'dec', '2022-09-08 17:44:09', '2022-09-08 17:44:10');
+
 -- --------------------------------------------------------
 
 --
@@ -161,14 +173,22 @@ CREATE TABLE `penetapan` (
   `swdkllj` varchar(256) NOT NULL,
   `penerbitan_stnk` varchar(256) NOT NULL,
   `penerbitan_ntkb` varchar(256) NOT NULL,
-  `d_pkb` varchar(256) NOT NULL,
-  `d_swdkllj` varchar(256) NOT NULL,
+  `d_pkb` varchar(50) NOT NULL,
+  `d_swdkllj` varchar(50) NOT NULL,
   `total` varchar(256) NOT NULL,
   `tanggal_penetapan` varchar(50) NOT NULL,
   `type_of_penetapan` varchar(256) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `penetapan`
+--
+
+INSERT INTO `penetapan` (`id_penetapan`, `pengecekan_id`, `petugas_id`, `pemilik_id`, `kendaraan_id`, `kepemilikan_id`, `pendaftaran_id`, `kode_penetapan`, `bbnkb`, `pkb`, `swdkllj`, `penerbitan_stnk`, `penerbitan_ntkb`, `d_pkb`, `d_swdkllj`, `total`, `tanggal_penetapan`, `type_of_penetapan`, `created_at`, `updated_at`) VALUES
+('6319f17519981', '6319ca1562317', '6317558604b54', '631755a65cf4e', '631755cbf2e77', '631756fa9b197', '6319c779e0787', 'PNP1', '50000', '444', '44', '444', '44', '40000000', '40000000', '80050976', '2022-09-08', 'dec', '2022-09-08 20:43:17', '2022-09-08 20:43:17'),
+('6319f6f6c1849', '6319ca1562317', '6317558604b54', '631755a65cf4e', '631755cbf2e77', '631756fa9b197', '6319c779e0787', 'PNP2', '4', '4', '4', '4', '4', '40000000', '40000000', '80000020', '2022-09-08', 'dec', '2022-09-08 21:06:46', '2022-09-08 21:06:46');
 
 -- --------------------------------------------------------
 
@@ -190,6 +210,13 @@ CREATE TABLE `pengecekan` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pengecekan`
+--
+
+INSERT INTO `pengecekan` (`id_pengecekan`, `pendaftaran_id`, `petugas_id`, `kode_pengecekan`, `tanggal_pengecekan`, `denda_pkb`, `denda_swdkllj`, `total_denda_pkb`, `total_denda_swdkllj`, `type_of_pengecekan`, `created_at`, `updated_at`) VALUES
+('6319ca1562317', '6319c779e0787', '6317558604b54', '4b437219', '769f76767a9f967a9f76', '199f9f9f9f', '769f9f9f9f', '239f9f9f9f9f9f9f', '239f9f9f9f9f9f9f', 'enc', '2022-09-08 17:55:17', '2022-09-08 17:55:17');
 
 -- --------------------------------------------------------
 
@@ -294,7 +321,12 @@ ALTER TABLE `kepemilikan`
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`),
   ADD KEY `fk_ptg_pb` (`petugas_id`),
-  ADD KEY `fk_pn_pb` (`penetapan_id`);
+  ADD KEY `fk_pn_pb` (`penetapan_id`),
+  ADD KEY `fk_pmk_pb` (`pemilik_id`),
+  ADD KEY `fk_knd_pb` (`kendaraan_id`),
+  ADD KEY `fk_kpm_pb` (`kepemilikan_id`),
+  ADD KEY `fk_pdf_pb` (`pendaftaran_id`),
+  ADD KEY `fk_png_pb` (`pengecekan_id`);
 
 --
 -- Indeks untuk tabel `pemilik`
@@ -372,7 +404,12 @@ ALTER TABLE `kepemilikan`
 -- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `fk_knd_pb` FOREIGN KEY (`kendaraan_id`) REFERENCES `kendaraan` (`id_kendaraan`),
+  ADD CONSTRAINT `fk_kpm_pb` FOREIGN KEY (`kepemilikan_id`) REFERENCES `kepemilikan` (`id_kepemilikan`),
+  ADD CONSTRAINT `fk_pdf_pb` FOREIGN KEY (`pendaftaran_id`) REFERENCES `pendaftaran` (`id_pendaftaran`),
+  ADD CONSTRAINT `fk_pmk_pb` FOREIGN KEY (`pemilik_id`) REFERENCES `pemilik` (`id_pemilik`),
   ADD CONSTRAINT `fk_pn_pb` FOREIGN KEY (`penetapan_id`) REFERENCES `penetapan` (`id_penetapan`),
+  ADD CONSTRAINT `fk_png_pb` FOREIGN KEY (`pengecekan_id`) REFERENCES `pengecekan` (`id_pengecekan`),
   ADD CONSTRAINT `fk_ptg_pb` FOREIGN KEY (`petugas_id`) REFERENCES `petugas` (`id_petugas`);
 
 --
