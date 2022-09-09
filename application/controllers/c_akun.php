@@ -50,11 +50,12 @@ class c_akun extends CI_Controller
 
     public function create()
     {
-        if($this->input->post('type_of_user')==null){
-            $data = $this->fungsi->inputOf('user',['nama','username','password','email','level_id','type_of_user']);
-        }elseif($this->input->post('type_of_user')=='enc'){
-            $data = $this->fungsi->input('user',['nama','username','password','email','level_id','type_of_user']);
-        }
+        // if($this->input->post('type_of_user')==null){
+        //     $data = $this->fungsi->inputOf('user',['nama','username','password','email','level_id','type_of_user']);
+        // }elseif($this->input->post('type_of_user')=='enc'){
+        //     $data = $this->fungsi->input('user',['nama','username','password','email','level_id','type_of_user']);
+        // }
+        $data = $this->fungsi->input('user',['nama','username','password','email','level_id','type_of_user']);
         $this->crud->create('user',$data);
 
 		set_pesan('data berhasil disimpan.');
@@ -80,11 +81,12 @@ class c_akun extends CI_Controller
 
     public function update($id)
     {
-        if($this->input->post('type_of_user')==null){
-            $data = $this->fungsi->inputOf('user',['nama','username','password','email','level_id','type_of_user']);
-        }elseif($this->input->post('type_of_user')=='enc'){
-            $data = $this->fungsi->input('user',['nama','username','password','email','level_id','type_of_user']);
-        }
+        // if($this->input->post('type_of_user')==null){
+        //     $data = $this->fungsi->inputOf('user',['nama','username','password','email','level_id','type_of_user']);
+        // }elseif($this->input->post('type_of_user')=='enc'){
+        //     $data = $this->fungsi->input('user',['nama','username','password','email','level_id','type_of_user']);
+        // }
+        $data = $this->fungsi->input('user',['nama','username','password','email','level_id','type_of_user']);
         $this->crud->update('user',$id,$data);
 
 		set_pesan('data berhasil diubah.');
