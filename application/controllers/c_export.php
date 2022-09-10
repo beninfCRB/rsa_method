@@ -70,11 +70,17 @@ class c_export extends CI_Controller
         {
             for($a=0;$a<count($data_array)-3;$a++){
                 if($secure == 'enc' && $row['type_of_'.$table] == 'dec'){
-                    $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval(enc($row[$data_array[$a]])));
-                }elseif($secure != 'enc' && $row['type_of_'.$table] == 'enc'){
-                    $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval(dec($row[$data_array[$a]])));
-                }else{
-                    $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval($row[$data_array[$a]]));
+                    if(strstr($data_array[$a],'_id')){
+                        $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval($row[$data_array[$a]]));
+                    }else{
+                        $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval(enc($row[$data_array[$a]])));
+                    }
+                }elseif($secure == NULL && $row['type_of_'.$table] == 'enc'){
+                    if(strstr($data_array[$a],'_id')){
+                        $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval($row[$data_array[$a]]));
+                    }else{
+                        $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval(dec($row[$data_array[$a]])));
+                    }
                 }
             }
             $excel_row++;
