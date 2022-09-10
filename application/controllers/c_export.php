@@ -81,6 +81,8 @@ class c_export extends CI_Controller
                     }else{
                         $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval(dec($row[$data_array[$a]])));
                     }
+                }elseif($secure == 'enc' && $row['type_of_'.$table] == 'enc'){
+                    $object->getActiveSheet()->setCellValueByColumnAndRow($a, $excel_row, strval($row[$data_array[$a]]));
                 }
             }
             $excel_row++;
