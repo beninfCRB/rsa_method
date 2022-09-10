@@ -45,7 +45,7 @@ class c_export extends CI_Controller
                $array[] = $field;
             }
 
-            array_splice($array,0,1);
+            // array_splice($array,0,1);
 
             $this->__export($table,$array,$secure);
         }
