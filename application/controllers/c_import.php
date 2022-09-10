@@ -57,7 +57,7 @@ class c_import extends CI_Controller
 	{
         // var_dump($data_array);
         // die;
-		    $fileName = $_FILES['file']['name'].'_'.Time();
+		    $fileName = time().'_'.$_FILES['file']['name'];
           
 			$config['upload_path'] = './assets/importFile/'; //path upload
 			$config['file_name'] = $fileName;  // nama file
@@ -68,8 +68,8 @@ class c_import extends CI_Controller
 			$this->upload->initialize($config);
 			  
 			if(! $this->upload->do_upload('file') ){
-				echo $this->upload->display_errors();
-                exit();
+                set_pesan($this->upload->display_errors(),false);
+                redirect('c_import');
 			}
 				  
 			$inputFileName = './assets/importFile/'.$fileName;
@@ -79,7 +79,8 @@ class c_import extends CI_Controller
 					$objReader = PHPExcel_IOFactory::createReader($inputFileType);
 					$objPHPExcel = $objReader->load($inputFileName);
 				} catch(Exception $e) {
-					die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+					set_pesan('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage(),false);
+                    redirect('c_import');
 				}
 	 
 				$sheet = $objPHPExcel->getSheet(0);

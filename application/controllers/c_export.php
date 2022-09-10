@@ -79,7 +79,7 @@ class c_export extends CI_Controller
             }
             $excel_row++;
         }
-        $file_name = $table.'_'.time().".xlsx";
+        $file_name = $table.".xlsx";
         $object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename='.$file_name);
