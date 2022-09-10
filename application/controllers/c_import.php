@@ -94,7 +94,7 @@ class c_import extends CI_Controller
                     $row_excel=[];
                     for($a=0;$a<=count($data_array)-3;$a++){
                         if($secure == 'enc'){
-                            if(strstr($rowData[0][$a],'_id')){
+                            if(strstr($data_array[$a],'_id')){
                                 $row_excel = array_merge($row_excel,[$data_array[$a] =>strval($rowData[0][$a])]);
                             }else{
                                 $row_excel = array_merge($row_excel,[$data_array[$a] =>enc(strval($rowData[0][$a]))]);
